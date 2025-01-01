@@ -19,7 +19,6 @@ type Task struct {
 var tasks []Task
 var filename = "tasks.json"
 
-// Load tasks from file
 func loadTasks() {
 	file, err := ioutil.ReadFile(filename)
 	if err == nil {
@@ -27,7 +26,6 @@ func loadTasks() {
 	}
 }
 
-// Save tasks to file
 func saveTasks() {
 	data, err := json.MarshalIndent(tasks, "", "  ")
 	if err != nil {
@@ -37,7 +35,6 @@ func saveTasks() {
 	_ = ioutil.WriteFile(filename, data, 0644)
 }
 
-// Add a new task
 func addTask(name string) {
 	id := 1
 	if len(tasks) > 0 {
@@ -49,7 +46,6 @@ func addTask(name string) {
 	fmt.Println("Task added:", name)
 }
 
-// List all tasks
 func listTasks() {
 	if len(tasks) == 0 {
 		fmt.Println("No tasks available.")
@@ -65,7 +61,6 @@ func listTasks() {
 	}
 }
 
-// Mark a task as done
 func markTaskDone(id int) {
 	for i, task := range tasks {
 		if task.ID == id {
@@ -78,7 +73,6 @@ func markTaskDone(id int) {
 	fmt.Println("Task not found with ID:", id)
 }
 
-// Delete a task
 func deleteTask(id int) {
 	for i, task := range tasks {
 		if task.ID == id {
@@ -91,7 +85,6 @@ func deleteTask(id int) {
 	fmt.Println("Task not found with ID:", id)
 }
 
-// Display the help menu
 func displayHelp() {
 	fmt.Println("To-Do List CLI Application")
 	fmt.Println("Commands:")
